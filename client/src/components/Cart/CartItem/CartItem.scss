@@ -1,103 +1,83 @@
 @import "../../../css-config/mixins.scss";
 
-.cart-item {
-    width: 100%;
-    margin: 0 auto;
-    display: flex;
-    background-color: rgba(0, 0, 0, 0.05);
-    @include md {
-        width: 100%;
+.cart-products {
+    flex-grow: 1;
+    overflow: auto;
+    .cart-product {
         padding: 20px;
-    }
-    .left {
-        width: 30%;
-        @include md {
-            width: 25%;
-        }
-        img {
-            width: 100%;
-        }
-        .quantity-buttons {
-            width: fit-content;
-            display: flex;
-            border: 1px solid #8d2de2;
-            margin-right: 10px;
-            margin: 0 auto;
-            height: 30px;
-            background-color: white;
-            @include md{
-                height: 40px;
+        display: flex;
+        gap: 10px;
+        .img-container {
+            background-color: rgba(0, 0, 0, 0.05);
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            img {
+                width: 100%;
+                height: 100%;
             }
-            span {
-                font-size: 18px;
-                width: 25px;
+        }
+        .prod-details {
+            overflow: hidden;
+            position: relative;
+            .name {
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                font-size: 16px;
+                line-height: 1;
+                margin-bottom: 10px;
+                font-weight: 600;
+                display: block;
+                padding-right: 25px;
+            }
+            .text {
                 display: flex;
                 align-items: center;
-                justify-content: center;
+                gap: 5px;
+                font-size: 12px;
+                font-weight: 600;
+                .highlight {
+                    color: #8e2ed2;
+                }
+            }
+            svg {
+                position: absolute;
+                top: 0;
+                right: 0;
                 cursor: pointer;
-                color: #6b6b6b;
-                @include md{
-                    width: 40px;
-                }
-                &:nth-child(1) {
-                    border-right: 1px solid #8d2de2;
-                }
-                &:nth-child(3) {
-                    border-left: 1px solid #8d2de2;
-                }
-                &:nth-child(2) {
-                    width: 40px;
-                    cursor: default;
-                    @include md{
-                        width: 60px;
+            }
+            .quantity-buttons {
+                width: fit-content;
+                display: flex;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                height: 30px;
+                margin-bottom: 8px;
+                span {
+                    font-size: 14px;
+                    width: 30px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    cursor: pointer;
+                    color: #6b6b6b;
+                    &:nth-child(1) {
+                        font-size: 18px;
+                        border-right: 1px solid rgba(0, 0, 0, 0.2);
+                    }
+                    &:nth-child(3) {
+                        font-size: 18px;
+                        border-left: 1px solid rgba(0, 0, 0, 0.2);
+                    }
+                    &:nth-child(2) {
+                        width: 40px;
+                        cursor: default;
                     }
                 }
             }
         }
-    }
-    .right {
-        width: 70%;
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 5px;
-        @include md {
-            padding: 20px;
-            width: 75%;
-        }
-        .name {
-            font-size: 20px;
-            display: block;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            @include md {
-                font-size: 24px;
-            }
-        }
-        .desc {
-            font-size: 16px;
-            display: block;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
-            color: #6b6b6b;
-            @include md {
-                font-size: 18px;
-            }
-        }
-        .product-total {
-            display: flex;
-            // flex-direction: column;
-            justify-content: space-between;
-            font-size: 18px;
-            color: #484848;
-            margin-top: 5px;
-            @include md {
-                font-size: 20px;
-                margin-top: 20px;
-                align-items: center;
-            }
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.05);
         }
     }
 }

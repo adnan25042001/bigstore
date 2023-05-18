@@ -4,13 +4,15 @@ import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
 import Search from "./Search/Search";
-// import Cart from "../Cart/Cart";
+import Cart from "../Cart/Cart";
 import { Context } from "../../utils/context";
 import "./Header.scss";
 
 const Header = () => {
     const [scrolled, setScrolled] = useState(false);
     const [isHome, setIsHome] = useState(false);
+    const [showCart, setShowCart] = useState(false);
+    const [showSearch, setShowSearch] = useState(false);
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -25,7 +27,7 @@ const Header = () => {
         window.addEventListener("scroll", handleScroll);
         if (
             window.location.href.includes("category") ||
-            window.location.href.includes("product") || 
+            window.location.href.includes("product") ||
             window.location.href.includes("cart")
         ) {
             setIsHome(false);
@@ -49,15 +51,26 @@ const Header = () => {
                     </ul>
                     <div className="center">BIGSTORE.</div>
                     <div className="right">
-                        <TbSearch />
+                        <TbSearch
+                            onClick={() => {
+                                setShowSearch(true);
+                            }}
+                        />
                         <AiOutlineHeart />
-                        <span className="cart-icon">
+                        <span
+                            className="cart-icon"
+                            onClick={() => {
+                                setShowCart(true);
+                            }}
+                        >
                             <CgShoppingCart />
                             <span>10</span>
                         </span>
                     </div>
                 </div>
             </header>
+            {showCart && <Cart setShowCart={setShowCart} />}
+            {showSearch && <Search setShowSearch={setShowSearch} />}
         </>
     );
 };

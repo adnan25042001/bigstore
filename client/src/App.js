@@ -6,7 +6,6 @@ import Category from "./components/Category/Category";
 import SingleProduct from "./components/SingleProduct/SingleProduct";
 import NewsLetter from "./components/Footer/Newsletter/Newsletter";
 import AppContext from "./utils/context";
-import Cart from "./components/Cart/Cart";
 
 function App() {
     return (
@@ -21,7 +20,6 @@ function App() {
                             path="/product/:id"
                             element={<SingleProduct />}
                         />
-                        <Route path="/cart" element={<Cart/>} />
                     </Routes>
                     <NewsLetter />
                     <Footer />
