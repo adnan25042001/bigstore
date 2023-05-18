@@ -1,0 +1,103 @@
+@import "../../../css-config/mixins.scss";
+
+.cart-item {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.05);
+    @include md {
+        width: 100%;
+        padding: 20px;
+    }
+    .left {
+        width: 30%;
+        @include md {
+            width: 25%;
+        }
+        img {
+            width: 100%;
+        }
+        .quantity-buttons {
+            width: fit-content;
+            display: flex;
+            border: 1px solid #8d2de2;
+            margin-right: 10px;
+            margin: 0 auto;
+            height: 30px;
+            background-color: white;
+            @include md{
+                height: 40px;
+            }
+            span {
+                font-size: 18px;
+                width: 25px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                color: #6b6b6b;
+                @include md{
+                    width: 40px;
+                }
+                &:nth-child(1) {
+                    border-right: 1px solid #8d2de2;
+                }
+                &:nth-child(3) {
+                    border-left: 1px solid #8d2de2;
+                }
+                &:nth-child(2) {
+                    width: 40px;
+                    cursor: default;
+                    @include md{
+                        width: 60px;
+                    }
+                }
+            }
+        }
+    }
+    .right {
+        width: 70%;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        @include md {
+            padding: 20px;
+            width: 75%;
+        }
+        .name {
+            font-size: 20px;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            @include md {
+                font-size: 24px;
+            }
+        }
+        .desc {
+            font-size: 16px;
+            display: block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            color: #6b6b6b;
+            @include md {
+                font-size: 18px;
+            }
+        }
+        .product-total {
+            display: flex;
+            // flex-direction: column;
+            justify-content: space-between;
+            font-size: 18px;
+            color: #484848;
+            margin-top: 5px;
+            @include md {
+                font-size: 20px;
+                margin-top: 20px;
+                align-items: center;
+            }
+        }
+    }
+}
