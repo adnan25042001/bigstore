@@ -1,19 +1,20 @@
 import "./Category.scss";
-import cat1 from "../../../assets/category/cat-1.jpg";
+import { useNavigate} from "react-router-dom";
 
 const Category = ({ categories }) => {
+    const navigate = useNavigate();
     return (
         <>
             <div className="shop-by-category">
                 <div className="categories">
                     {categories &&
-                        categories.map((ele) => {
+                        categories.map((cat) => {
                             return (
-                                <div key={ele?.id} className="category">
+                                <div key={cat?.id} className="category" onClick={()=>{navigate(`/category/${cat?.id}`)}}>
                                     <img
                                         src={
                                             process.env.REACT_APP_BASE_URL +
-                                            ele?.attributes?.img?.data
+                                            cat?.attributes?.img?.data
                                                 ?.attributes?.url
                                         }
                                         alt="cat1"

@@ -7,22 +7,22 @@ import { fetchDataFromApi } from "../../utils/api";
 import { Context } from "../../utils/context";
 
 const Home = () => {
-
-    const {categories, setCategories, products, setProducts} = useContext(Context);
+    const { categories, setCategories, products, setProducts } =
+        useContext(Context);
 
     useEffect(() => {
         getCategories();
-        getProducts()
+        getProducts();
     }, []);
 
     const getCategories = async () => {
         const res = await fetchDataFromApi("/api/categories?populate=*");
-        setCategories(res?.data)
+        setCategories(res?.data);
     };
 
     const getProducts = async () => {
         const res = await fetchDataFromApi("/api/products?populate=*");
-        setProducts(res?.data)
+        setProducts(res?.data);
     };
 
     return (
@@ -32,7 +32,10 @@ const Home = () => {
                 <div className="main-content">
                     <div className="layout">
                         <Category categories={categories} />
-                        <Products headingText="Popular Products" products={products} />
+                        <Products
+                            headingText="Popular Products"
+                            products={products}
+                        />
                     </div>
                 </div>
             </div>

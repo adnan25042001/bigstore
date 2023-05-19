@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TbSearch } from "react-icons/tb";
 import { CgShoppingCart } from "react-icons/cg";
 import { AiOutlineHeart } from "react-icons/ai";
@@ -13,6 +13,7 @@ const Header = () => {
     const [isHome, setIsHome] = useState(false);
     const [showCart, setShowCart] = useState(false);
     const [showSearch, setShowSearch] = useState(false);
+    const navigate = useNavigate();
 
     const handleScroll = () => {
         const offset = window.scrollY;
@@ -25,16 +26,12 @@ const Header = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-        if (
-            window.location.href.includes("category") ||
-            window.location.href.includes("product") ||
-            window.location.href.includes("cart")
-        ) {
+        if (window.location.href.length > "http://localhost:3000/".length) {
             setIsHome(false);
         } else {
             setIsHome(true);
         }
-    }, []);
+    }, [window.location.href]);
 
     return (
         <>
@@ -45,11 +42,11 @@ const Header = () => {
             >
                 <div className="header-content">
                     <ul className="left">
-                        <li>Home</li>
+                        <li onClick={()=>navigate("/")}>Home</li>
                         <li>About</li>
                         <li>Categories</li>
                     </ul>
-                    <div className="center">BIGSTORE.</div>
+                    <div className="center" onClick={()=>navigate("/")}>BIGSTORE.</div>
                     <div className="right">
                         <TbSearch
                             onClick={() => {

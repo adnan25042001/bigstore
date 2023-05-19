@@ -14,9 +14,14 @@ function App() {
                 <AppContext>
                     <Header />
                     <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/category/:id" element={<Category />} />
+                        <Route exact path="/" element={<Home />} />
                         <Route
+                            exact
+                            path="/category/:id"
+                            element={<Category />}
+                        />
+                        <Route
+                            exact
                             path="/product/:id"
                             element={<SingleProduct />}
                         />
