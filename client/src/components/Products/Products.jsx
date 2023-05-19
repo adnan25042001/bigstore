@@ -1,22 +1,18 @@
 import "./Products.scss";
 import Product from "./Product/Product";
 
-const Products = (props) => {
+const Products = ({ headingText, products, innerPage }) => {
     return (
         <>
             <div className="products-container">
-                {!props.innerPage && (
-                    <div className="sec-heading">{props.headingText}</div>
-                )}
+                {!innerPage && <div className="sec-heading">{headingText}</div>}
                 <div className="products">
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
-                    <Product />
+                    {products &&
+                        products.map((prod) => {
+                            return (
+                                <Product key={prod?.id} productDetails={prod} />
+                            );
+                        })}
                 </div>
             </div>
         </>
