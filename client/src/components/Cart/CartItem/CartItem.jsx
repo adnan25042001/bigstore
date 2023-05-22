@@ -1,30 +1,72 @@
 import "./CartItem.scss";
-import prod from "../../../assets/products/earbuds-prod-1.webp";
 import { MdClose } from "react-icons/md";
+import { useContext } from "react";
+import { Context } from "../../../utils/context";
 
 const CartItem = () => {
+    const { cartItems, handleRemoveFromCart, handleCartProductQuantity } =
+        useContext(Context);
     return (
         <>
             <div className="cart-products">
-                <div className="cart-product">
-                    <div className="img-container">
-                        <img src={prod} alt="prod" />
-                    </div>
-                    <div className="prod-details">
-                        <span className="name">Product name</span>
-                        <MdClose className="close-btn" />
-                        <div className="quantity-buttons">
-                            <span>-</span>
-                            <span>3</span>
-                            <span>+</span>
-                        </div>
-                        <div className="text">
-                            <span>3</span>
-                            <span>x</span>
-                            <span className="highlight">&#8377;499</span>
-                        </div>
-                    </div>
-                </div>
+                {cartItems &&
+                    cartItems.map((prod) => {
+                        return (
+                            <div key={prod.id} className="cart-product">
+                                <div className="img-container">
+                                    <img
+                                        src={
+                                            process.env.REACT_APP_BASE_URL +
+                                            prod?.attributes?.img?.data[0]
+                                                ?.attributes?.url
+                                        }
+                                        alt="prod"
+                                    />
+                                </div>
+                                <div className="prod-details">
+                                    <span className="name">
+                                        {prod.attributes.title}
+                                    </span>
+                                    <MdClose
+                                        className="close-btn"
+                                        onClick={() => {
+                                            handleRemoveFromCart(prod);
+                                        }}
+                                    />
+                                    <div className="quantity-buttons">
+                                        <span
+                                            onClick={() => {
+                                                handleCartProductQuantity(
+                                                    "dec",
+                                                    prod
+                                                );
+                                            }}
+                                        >
+                                            -
+                                        </span>
+                                        <span>{prod.attributes.quantity}</span>
+                                        <span
+                                            onClick={() => {
+                                                handleCartProductQuantity(
+                                                    "inc",
+                                                    prod
+                                                );
+                                            }}
+                                        >
+                                            +
+                                        </span>
+                                    </div>
+                                    <div className="text">
+                                        <span>{prod.attributes.quantity}</span>
+                                        <span>x</span>
+                                        <span className="highlight">
+                                            &#8377;{prod.attributes.price}
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })}
             </div>
         </>
     );

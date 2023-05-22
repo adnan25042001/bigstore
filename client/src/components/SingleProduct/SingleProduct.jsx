@@ -10,23 +10,25 @@ import {
 } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { Context } from "../../utils/context";
 
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
+    const { handleAddToCart } = useContext(Context);
 
     const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
 
     const increment = () => {
-        setQuantity(quantity+1)
-    }
+        setQuantity((prevState) => prevState + 1);
+    };
 
     const decrement = () => {
-        if(quantity > 1){
-            setQuantity(quantity-1);
+        if (quantity > 1) {
+            setQuantity((prevState) => prevState - 1);
         }
-    }
+    };
 
     return (
         <>
@@ -34,9 +36,14 @@ const SingleProduct = () => {
                 <div className="layout">
                     <div className="single-product-page">
                         <div className="left">
-                            <img src={process.env.REACT_APP_BASE_URL +
-                            data?.[0]?.attributes?.img?.data[0]?.attributes
-                                ?.url} alt="prod" />
+                            <img
+                                src={
+                                    process.env.REACT_APP_BASE_URL +
+                                    data?.[0]?.attributes?.img?.data[0]
+                                        ?.attributes?.url
+                                }
+                                alt="prod"
+                            />
                         </div>
                         <div className="right">
                             <span className="name">
@@ -54,7 +61,13 @@ const SingleProduct = () => {
                                     <span>{quantity}</span>
                                     <span onClick={increment}>+</span>
                                 </div>
-                                <button className="add-to-cart-button">
+                                <button
+                                    className="add-to-cart-button"
+                                    onClick={() => {
+                                        handleAddToCart(data[0], quantity);
+                                        setQuantity(1);
+                                    }}
+                                >
                                     <FaCartPlus size={20} />
                                     ADD TO CART
                                 </button>
@@ -62,7 +75,13 @@ const SingleProduct = () => {
                             <span className="divider" />
                             <div className="info-item">
                                 <span className="text-bold">
-                                    Category: <span>{data?.[0]?.attributes?.categories?.data?.[0]?.attributes?.title}</span>
+                                    Category:{" "}
+                                    <span>
+                                        {
+                                            data?.[0]?.attributes?.categories
+                                                ?.data?.[0]?.attributes?.title
+                                        }
+                                    </span>
                                 </span>
                                 <span className="text-bold">
                                     Share:{" "}
@@ -77,7 +96,12 @@ const SingleProduct = () => {
                             </div>
                         </div>
                     </div>
-                    <ReletedProducts />
+                    <ReletedProducts
+                        productId={id}
+                        categoryId={
+                            data?.[0]?.attributes?.categories?.data?.[0]?.id
+                        }
+                    />
                 </div>
             </div>
         </>

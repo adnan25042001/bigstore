@@ -1,8 +1,22 @@
 import "./Search.scss";
 import { MdClose } from "react-icons/md";
-import prod from "../../../assets/products/earbuds-prod-2.webp";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useFetch from "../../../hooks/useFetch";
 
 const Search = ({ setShowSearch }) => {
+    const [query, setQuery] = useState("");
+    const navigate = useNavigate();
+    const onChange = (event) => {
+        setQuery(event.target.value);
+    };
+    let { data } = useFetch(
+        `/api/products?populate=*&filters[title][$contains]=${query}`
+    );
+    console.log(data);
+    if (!query.length) {
+        data = null;
+    }
     return (
         <>
             <div className="search-modal">
@@ -11,6 +25,8 @@ const Search = ({ setShowSearch }) => {
                         type="text"
                         autoFocus
                         placeholder="Search for products"
+                        value={query}
+                        onChange={onChange}
                     />
                     <MdClose
                         onClick={() => {
@@ -20,17 +36,40 @@ const Search = ({ setShowSearch }) => {
                 </div>
                 <div className="search-result-content">
                     <div className="search-results">
-                        <div className="search-result-item">
-                            <div className="img-container">
-                                <img src={prod} alt="prod" />
-                            </div>
-                            <div className="prod-details">
-                                <span className="name">Product name</span>
-                                <span className="desc">
-                                    Product description
-                                </span>
-                            </div>
-                        </div>
+                        {data &&
+                            data.map((prod) => {
+                                return (
+                                    <div
+                                        key={prod.id}
+                                        className="search-result-item"
+                                        onClick={() => {
+                                            navigate(`/product/${prod.id}`);
+                                            setShowSearch(false);
+                                        }}
+                                    >
+                                        <div className="img-container">
+                                            <img
+                                                src={
+                                                    process.env
+                                                        .REACT_APP_BASE_URL +
+                                                    prod.attributes?.img
+                                                        ?.data[0]?.attributes
+                                                        ?.url
+                                                }
+                                                alt="prod"
+                                            />
+                                        </div>
+                                        <div className="prod-details">
+                                            <span className="name">
+                                                {prod.attributes.title}
+                                            </span>
+                                            <span className="desc">
+                                                {prod.attributes.title}
+                                            </span>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                     </div>
                 </div>
             </div>
