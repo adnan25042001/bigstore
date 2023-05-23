@@ -2,7 +2,7 @@ import axios from "axios";
 
 const params = {
     headers: {
-        Authorization: "Bearer " + process.env.REACT_APP_STRIPE_APP_KEY,
+        Authorization: "Bearer " + process.env.REACT_APP_STRAPI_APP_KEY,
     },
 };
 
@@ -18,3 +18,10 @@ export const fetchDataFromApi = async (url) => {
         return error;
     }
 };
+
+export const makePaymentRequest = axios.create({
+    baseURL: process.env.REACT_APP_BASE_URL,
+    headers: {
+        Authorization: "Bearer " + process.env.REACT_APP_STRAPI_APP_KEY,
+    },
+});

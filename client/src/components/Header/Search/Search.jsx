@@ -13,7 +13,6 @@ const Search = ({ setShowSearch }) => {
     let { data } = useFetch(
         `/api/products?populate=*&filters[title][$contains]=${query}`
     );
-    console.log(data);
     if (!query.length) {
         data = null;
     }
