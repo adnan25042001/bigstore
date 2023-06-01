@@ -12,14 +12,12 @@ const Cart = ({ setShowCart }) => {
     const stripePromise = loadStripe(
         process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY
     );
-        console.log(cartItems)
     const handlePayment = async () => {
         try {
             const stripe = await stripePromise;
             const res = await makePaymentRequest.post(`/api/orders`, {
                 products: cartItems,
             });
-            console.log(res)
             await stripe.redirectToCheckout({
                 sessionId: res.data.stripeSession.id,
             });

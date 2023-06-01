@@ -16,9 +16,9 @@ const CartItem = () => {
                                 <div className="img-container">
                                     <img
                                         src={
-                                            process.env.REACT_APP_BASE_URL +
-                                            prod?.attributes?.img?.data[0]
-                                                ?.attributes?.url
+                                            
+                                            prod?.attributes?.img?.data[0]?.attributes
+                                            ?.formats?.thumbnail?.url
                                         }
                                         alt="prod"
                                     />

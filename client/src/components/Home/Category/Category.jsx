@@ -1,5 +1,5 @@
 import "./Category.scss";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Category = ({ categories }) => {
     const navigate = useNavigate();
@@ -10,12 +10,18 @@ const Category = ({ categories }) => {
                     {categories &&
                         categories.map((cat) => {
                             return (
-                                <div key={cat?.id} className="category" onClick={()=>{navigate(`/category/${cat?.id}`)}}>
+                                <div
+                                    key={cat?.id}
+                                    className="category"
+                                    onClick={() => {
+                                        navigate(`/category/${cat?.id}`);
+                                    }}
+                                >
                                     <img
                                         src={
-                                            process.env.REACT_APP_BASE_URL +
                                             cat?.attributes?.img?.data
-                                                ?.attributes?.url
+                                                ?.attributes?.formats?.thumbnail
+                                                ?.url
                                         }
                                         alt="cat1"
                                     />

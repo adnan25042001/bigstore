@@ -2,12 +2,10 @@ import "./Product.scss";
 import { useNavigate } from "react-router-dom";
 
 const Product = ({ productDetails }) => {
+    console.log(productDetails);
     const navigate = useNavigate();
     let getAverageColor = (imgElement, ratio) => {
         const canvas = document.createElement("canvas");
-
-        // let height = (canvas.height = imgElement.naturalHeight);
-        // let width = (canvas.width = imgElement.naturalWidth);
 
         const ctx = canvas.getContext("2d");
         ctx.drawImage(imgElement, 0, 0);
@@ -47,7 +45,6 @@ const Product = ({ productDetails }) => {
         let image = e.target;
         const { r, g, b } = getAverageColor(image, 4);
         e.target.parentNode.style.background = `rgba(${r},${g},${b}, 0.1)`;
-        console.log(`rgb(${r},${g},${b})`);
     };
     return (
         <>
@@ -60,9 +57,8 @@ const Product = ({ productDetails }) => {
                 <div className="thumbnail">
                     <img
                         src={
-                            process.env.REACT_APP_BASE_URL +
                             productDetails?.attributes?.img?.data[0]?.attributes
-                                ?.url
+                                ?.formats?.thumbnail?.url
                         }
                         alt="prod"
                         crossOrigin="anonymous"
