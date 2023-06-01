@@ -49,7 +49,7 @@ const Search = ({ setShowSearch }) => {
                                         <div className="img-container">
                                             <img
                                                 src={
-                                                    prod.attributes?.imgage
+                                                    prod.attributes?.image
                                                         ?.data[0]?.attributes
                                                         ?.formats?.thumbnail
                                                         ?.url

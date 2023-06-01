@@ -2,7 +2,6 @@ import "./Product.scss";
 import { useNavigate } from "react-router-dom";
 
 const Product = ({ productDetails }) => {
-    console.log(productDetails);
     const navigate = useNavigate();
     let getAverageColor = (imgElement, ratio) => {
         const canvas = document.createElement("canvas");
@@ -57,7 +56,7 @@ const Product = ({ productDetails }) => {
                 <div className="thumbnail">
                     <img
                         src={
-                            productDetails?.attributes?.imgage?.data[0]
+                            productDetails?.attributes?.image?.data[0]
                                 ?.attributes?.formats?.thumbnail?.url
                         }
                         alt="prod"

@@ -39,7 +39,7 @@ const SingleProduct = () => {
                         <div className="left">
                             <img
                                 src={
-                                    data?.[0]?.attributes?.imgage?.data[0]
+                                    data?.[0]?.attributes?.image?.data[0]
                                         ?.attributes?.formats?.thumbnail?.url
                                 }
                                 alt="prod"
