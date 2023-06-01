@@ -16,7 +16,7 @@ import { Context } from "../../utils/context";
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
-    console.log(id)
+    console.log(id);
     const { handleAddToCart } = useContext(Context);
 
     const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);
@@ -39,7 +39,7 @@ const SingleProduct = () => {
                         <div className="left">
                             <img
                                 src={
-                                    data?.[0]?.attributes?.img?.data?.[0]
+                                    data?.[0]?.attributes?.imgage?.data[0]
                                         ?.attributes?.formats?.thumbnail?.url
                                 }
                                 alt="prod"

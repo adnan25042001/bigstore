@@ -57,8 +57,8 @@ const Product = ({ productDetails }) => {
                 <div className="thumbnail">
                     <img
                         src={
-                            productDetails?.attributes?.img?.data[0]?.attributes
-                                ?.formats?.thumbnail?.url
+                            productDetails?.attributes?.imgage?.data[0]
+                                ?.attributes?.formats?.thumbnail?.url
                         }
                         alt="prod"
                         crossOrigin="anonymous"

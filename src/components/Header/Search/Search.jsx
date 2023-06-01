@@ -49,10 +49,9 @@ const Search = ({ setShowSearch }) => {
                                         <div className="img-container">
                                             <img
                                                 src={
-                                                    process.env
-                                                        .REACT_APP_BASE_URL +
-                                                    prod.attributes?.img
+                                                    prod.attributes?.imgage
                                                         ?.data[0]?.attributes
+                                                        ?.formats?.thumbnail
                                                         ?.url
                                                 }
                                                 alt="prod"

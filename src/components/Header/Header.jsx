@@ -27,7 +27,10 @@ const Header = () => {
 
     useEffect(() => {
         window.addEventListener("scroll", handleScroll);
-        if (window.location.href.length > "http://localhost:3000/".length) {
+        if (
+            window.location.href.length >
+            "https://bigstore-auxi.onrender.com/".length
+        ) {
             setIsHome(false);
         } else {
             setIsHome(true);
