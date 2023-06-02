@@ -16,7 +16,6 @@ import { Context } from "../../utils/context";
 const SingleProduct = () => {
     const [quantity, setQuantity] = useState(1);
     const { id } = useParams();
-    console.log(id);
     const { handleAddToCart } = useContext(Context);
 
     const { data } = useFetch(`/api/products?populate=*&[filters][id]=${id}`);

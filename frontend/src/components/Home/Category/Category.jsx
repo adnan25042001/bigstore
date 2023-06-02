@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 
 const Category = ({ categories }) => {
     const navigate = useNavigate();
-    console.log(categories);
     return (
         <>
             <div className="shop-by-category">
