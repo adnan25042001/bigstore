@@ -51,10 +51,16 @@ const Search = ({ setShowSearch }) => {
                                                 src={
                                                     prod.attributes?.image
                                                         ?.data[0]?.attributes
-                                                        ?.formats?.thumbnail
-                                                        ?.url
+                                                        ?.formats?.large?.url ||
+                                                    prod.attributes?.image
+                                                        ?.data[0]?.attributes
+                                                        ?.formats?.medium
+                                                        ?.url ||
+                                                    prod.attributes?.image
+                                                        ?.data[0]?.attributes
+                                                        ?.formats?.small?.url
                                                 }
-                                                alt="prod"
+                                                alt={prod.attributes.title}
                                             />
                                         </div>
                                         <div className="prod-details">

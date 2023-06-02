@@ -40,9 +40,13 @@ const SingleProduct = () => {
                             <img
                                 src={
                                     data?.[0]?.attributes?.image?.data[0]
-                                        ?.attributes?.formats?.thumbnail?.url
+                                        ?.attributes?.formats?.large?.url ||
+                                    data?.[0]?.attributes?.image?.data[0]
+                                        ?.attributes?.formats?.medium?.url ||
+                                    data?.[0]?.attributes?.image?.data[0]
+                                        ?.attributes?.formats?.small?.url
                                 }
-                                alt="prod"
+                                alt={data?.[0]?.attributes?.title}
                             />
                         </div>
                         <div className="right">

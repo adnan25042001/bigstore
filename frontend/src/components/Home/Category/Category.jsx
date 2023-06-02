@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Category = ({ categories }) => {
     const navigate = useNavigate();
+    console.log(categories);
     return (
         <>
             <div className="shop-by-category">
@@ -20,10 +21,16 @@ const Category = ({ categories }) => {
                                     <img
                                         src={
                                             cat?.attributes?.img?.data
-                                                ?.attributes?.formats?.thumbnail
+                                                ?.attributes?.formats?.large
+                                                ?.url ||
+                                            cat?.attributes?.img?.data
+                                                ?.attributes?.formats?.medium
+                                                ?.url ||
+                                            cat?.attributes?.img?.data
+                                                ?.attributes?.formats?.small
                                                 ?.url
                                         }
-                                        alt="cat1"
+                                        alt={cat?.attributes?.title}
                                     />
                                 </div>
                             );

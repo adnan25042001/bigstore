@@ -28,8 +28,6 @@ const Product = ({ productDetails }) => {
             b += data[i + 2];
         }
 
-        // console.log(r, g, b, count);
-
         r = ~~(r / count);
         g = ~~(g / count);
         b = ~~(b / count);
@@ -57,9 +55,13 @@ const Product = ({ productDetails }) => {
                     <img
                         src={
                             productDetails?.attributes?.image?.data[0]
-                                ?.attributes?.formats?.thumbnail?.url
+                                ?.attributes?.formats?.large?.url ||
+                            productDetails?.attributes?.image?.data[0]
+                                ?.attributes?.formats?.medium?.url ||
+                            productDetails?.attributes?.image?.data[0]
+                                ?.attributes?.formats?.small?.url
                         }
-                        alt="prod"
+                        alt={productDetails?.attributes?.title}
                         crossOrigin="anonymous"
                         onLoad={load}
                     />
