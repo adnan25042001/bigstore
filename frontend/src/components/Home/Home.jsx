@@ -31,11 +31,11 @@ const Home = () => {
                 <Banner />
                 <div className="main-content">
                     <div className="layout">
-                        <Category categories={categories} />
-                        <Products
+                        {categories && <Category categories={categories} />}
+                        {products && <Products
                             headingText="Popular Products"
                             products={products}
-                        />
+                        />}
                     </div>
                 </div>
             </div>

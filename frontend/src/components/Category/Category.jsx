@@ -14,13 +14,15 @@ const Category = () => {
         <>
             <div className="category-main-content">
                 <div className="layout">
-                    <Products
-                        headingText={
-                            data?.[0]?.attributes?.categories?.data[0]
-                                ?.attributes?.title
-                        }
-                        products={data}
-                    />
+                    {data && (
+                        <Products
+                            headingText={
+                                data?.[0]?.attributes?.categories?.data[0]
+                                    ?.attributes?.title
+                            }
+                            products={data}
+                        />
+                    )}
                 </div>
             </div>
         </>

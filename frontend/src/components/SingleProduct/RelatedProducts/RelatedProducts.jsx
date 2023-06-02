@@ -9,7 +9,9 @@ const RelatedProducts = ({ productId, categoryId }) => {
     return (
         <>
             <div className="related-products">
-                <Products products={data} headingText="Related Products" />
+                {data && (
+                    <Products products={data} headingText="Related Products" />
+                )}
             </div>
         </>
     );

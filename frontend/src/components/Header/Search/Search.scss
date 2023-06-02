@@ -55,9 +55,10 @@
             max-width: 800px;
         }
         .search-results {
-            height: calc(100vh - 110px);
+            height: calc(100vh - 120px);
             overflow: auto;
             margin: 20px 0;
+            // margin-bottom: 50px;
             @include md {
                 height: calc(100vh - 160px);
             }
